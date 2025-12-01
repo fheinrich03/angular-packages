@@ -1,5 +1,5 @@
 {
-  "name": "my-lib",
+  "name": "angular-packages",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
