@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-example',
@@ -7,9 +7,11 @@ import { Component } from '@angular/core';
     <p>
       example works!
     </p>
+    <p>display an argument: {{ argument }}</p>
   `,
   styles: ``
 })
 export class ExampleComponent {
+  @Input() argument = '';
 
 }

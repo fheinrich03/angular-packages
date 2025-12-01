@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "storybook": "ng run shared-components:storybook",
+    "build-storybook": "ng run shared-components:build-storybook"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +41,15 @@
     "typescript": "~5.7.2",
     "typescript-eslint": "8.46.4",
     "@angular/material": "19.0.0",
-    "@angular/cdk": "19.0.0"
+    "@angular/cdk": "19.0.0",
+    "storybook": "^10.1.2",
+    "@storybook/angular": "^10.1.2",
+    "@storybook/addon-a11y": "^10.1.2",
+    "@storybook/addon-docs": "^10.1.2",
+    "@storybook/addon-onboarding": "^10.1.2",
+    "@angular-devkit/architect": "^0.1902.0",
+    "@angular-devkit/core": "^19.2.0",
+    "@compodoc/compodoc": "^1.1.32",
+    "eslint-plugin-storybook": "^10.1.2"
   }
 }
