@@ -28,7 +28,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  title: 'Components/FileUploadComponent',\r\n  component: FileUploadComponent,\r\n  tags: ['autodocs'],\r\n  argTypes: {\r\n    argument: {\r\n        control: 'text'\r\n    }\r\n  }\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/FileUploadComponent',\r\n  component: FileUploadComponent,\r\n  tags: ['autodocs'],\r\n}"
             },
             {
                 "name": "preview",
@@ -58,7 +58,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n//   args: {\r\n//     argument: 'ein wert',\r\n//   },\r\n}"
+                "defaultValue": "{}"
             }
         ],
         "functions": [],
@@ -119,7 +119,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  title: 'Components/FileUploadComponent',\r\n  component: FileUploadComponent,\r\n  tags: ['autodocs'],\r\n  argTypes: {\r\n    argument: {\r\n        control: 'text'\r\n    }\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/FileUploadComponent',\r\n  component: FileUploadComponent,\r\n  tags: ['autodocs'],\r\n}"
                 },
                 {
                     "name": "Primary",
@@ -129,7 +129,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n//   args: {\r\n//     argument: 'ein wert',\r\n//   },\r\n}"
+                    "defaultValue": "{}"
                 }
             ],
             "projects/shared-components/.storybook/preview.ts": [

@@ -1,6 +1,6 @@
 {
   "name": "angular-packages",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -51,5 +51,18 @@
     "@angular-devkit/core": "^19.2.0",
     "@compodoc/compodoc": "^1.1.32",
     "eslint-plugin-storybook": "^10.1.2"
-  }
+  },
+  "description": "Packages für Angular Web Applikationen",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git@localhost:test-org/angular-packages.git"
+  },
+  "keywords": [
+    "angular",
+    "packages",
+    "npm"
+  ],
+  "author": "Felix Heinrich",
+  "license": "ISC"
 }
