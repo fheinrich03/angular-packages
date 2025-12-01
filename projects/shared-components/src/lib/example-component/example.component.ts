@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-shared-components',
+  selector: 'lib-example',
   imports: [],
   template: `
     <p>
-      shared-components works!
+      example works!
     </p>
   `,
   styles: ``
 })
-export class SharedComponentsComponent {
+export class ExampleComponent {
 
 }

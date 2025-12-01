@@ -1,0 +1,24 @@
+<div class="invisible hidden">
+  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload />
+</div>
+<div
+  class="bg-[#e4e4e7] p-5 border border-black cursor-pointer"
+  (click)="fileUpload.click()"
+  (dragover)="dragOver($event)"
+  (drop)="drop($event)"
+  (keyup.enter)="fileUpload.click()"
+  (keyup.space)="fileUpload.click()"
+  tabindex="0">
+  <div class="flex justify-center">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="File Upload"
+      style="font-size: 70px; height: 70px; width: 70px"
+      >file_upload</mat-icon
+    >
+  </div>
+  <div class="flex justify-center p-5">
+    Klicken Sie auf die Schaltfläche oder ziehen Sie die Datei per Drag and Drop auf die
+    Schaltfläche.
+  </div>
+</div>
