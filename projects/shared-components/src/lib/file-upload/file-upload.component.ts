@@ -12,7 +12,7 @@ import { MatRadioModule } from "@angular/material/radio";
 export class FileUploadComponent {
   @Output() file: EventEmitter<File> = new EventEmitter<File>();
 
-  constructor() {}
+  constructor() { /* empty */ }
 
   private provideFile(file: File | undefined): void {
     if (file != undefined) {
