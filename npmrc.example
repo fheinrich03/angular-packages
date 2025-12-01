@@ -1,7 +1,0 @@
-# Definiert das Scope und die URL für unser internes Gitea Registry
-# {scope}:registry=https://gitea.example.com/api/packages/{owner}/npm/
-
-# Authentifizierungstoken
-# HINWEIS: Ersetze "TOKEN" durch ein Gitea Personal Access Token (PAT)
-# Das Token muss Lese- und Schreibrechte für Packages haben.
-# //gitea.example.com/api/packages/{owner}/npm/:_authToken="{token}"

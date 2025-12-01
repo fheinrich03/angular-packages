@@ -1,14 +1,17 @@
 {
-  "name": "shared-components",
+  "name": "@angular-packages/shared-components",
   "version": "0.0.1",
   "peerDependencies": {
+    "@angular/cdk": "^17.0.0",
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
-    "@angular/material": "^17.0.0",
-    "@angular/cdk": "^17.0.0"
+    "@angular/material": "^17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "http://localhost:3000/api/packages/test-org/npm/"
+  }
 }
