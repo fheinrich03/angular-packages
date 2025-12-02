@@ -1,83 +1,111 @@
-# Angular Packages - Privates NPM Registry
+# Angular Packages – Privates NPM Registry
 
-- Generiert mit [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
-- Dieses Projekt ist ein Template für Angular Component Libraries, welche in ein (privates) NPM registry hochgeladen werden können.
-- Im Template ist bereits eine Beispiel Librar enthalten unter `projects\shared-components`
+## Gliederung
+1. [Einleitung](#1-einleitung)
+2. [Lokale Entwicklung](#2-lokale-entwicklung)
+3. [Hilfreiche Befehle](#3-hilfreiche-befehle)
+4. [Neue Komponente hinzufügen](#4-neue-komponente-hinzufügen)
+5. [Neue Library erstellen](#5-neue-library-erstellen)
+6. [Library veröffentlichen](#6-library-veröffentlichen)
 
-## Lokale Entwicklung
+---
+
+# 1. Einleitung
+
+Dieses Projekt wurde mit der [Angular CLI](https://github.com/angular/angular-cli) Version **19.2.15** erstellt.  
+Es dient als Template für **Angular Component Libraries**, die in ein **privates NPM-Registry** hochgeladen werden können.
+
+Eine Beispiel-Library ist bereits enthalten:  
+`projects/shared-components`
+
+---
+
+# 2. Lokale Entwicklung
 
 ```bash
-npm i # dev-dependencies installieren
-npm run storybook:[project] # startet storybook für ein Projekt z.b. shared-components. Storybook ist dann erreichbar unter `http://localhost:6006/`
+npm i                 # Dev-Dependencies installieren
+npm run storybook:[project]  # Startet Storybook für ein Projekt, z. B. shared-components
+# Storybook läuft dann unter: http://localhost:6006/
 ```
 
-## Hilfreiche Befehle
+---
+
+# 3. Hilfreiche Befehle
 
 ```bash
-ng generate component component-name # generiert eine neue Angular Component
-npm run build # baut alle Projekte
-npm run test # Führt Unit Tests aus mit Karma (für alle Projekte)
+npm run build   # Baut alle Projekte
+npm run test    # Führt Unit-Tests mit Karma aus (für alle Projekte)
 ```
 
-## Eine Neue Component hinzufügen
+---
+
+# 4. Neue Komponente hinzufügen
 
 ```bash
-ng generate component component-name # generiert eine neue Angular Component
+ng generate component <component-name> --project=<lib-name>
 ```
 
-## Eine neue Library erstellen
+Damit die Komponente in **Storybook** sichtbar wird, muss zusätzlich eine `.stories.ts` Datei im `stories`-Ordner erstellt werden.
+
+---
+
+# 5. Neue Library erstellen
 
 ```bash
-ng generate library <lib-name> # erstellt eine neue Library unter `projects`
+ng generate library <lib-name>   # erstellt die Library unter /projects
+```
 
-# ersetze <npm-registry-url> und <lib-name>
-# Registry-URL: {scope}:registry=https://gitea.example.com/api/packages/{owner}/npm/
+### Registry-URL setzen
+```bash
+# <npm-registry-url> und <lib-name> ersetzen
 npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
-
-# Initialisiere die Library als NPM Package (zum publishen später)
-# vergebe hierbei einen sinnvollen Namen und scope z.b. @angular-packages/shared-components
-npm init ./projects/<lib-name>
 ```
 
-### Eine Library als NPM Package publishen
+### Library als NPM Package initialisieren
+```bash
+npm init ./projects/<lib-name>
+# Vergib dabei einen sinnvollen Namen z. B. @angular-packages/shared-components
+```
 
-**Vorraussetzungen** - einmaliges Setup
-1. NPM Registry-URL setzen
-- Muss nur einmalig ausgeführt werden
-- Muss nur ausgeführt werden, falls die NPM Registry-URL noch nicht gesetzt ist in der <project>/package.json
-    ```bash
-    npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
-    ```
+---
 
-2. NPM Registry Auth Token setzen
-- Muss nur einmalig pro Registry konfiguriert werden und bliebt in der Benutzerkonfiguration gespseichert
-    ```bash
-    # HINWEIS: Ersetze "TOKEN" durch ein Gitea Personal Access Token (PAT)
-    # Das Token kann in der Gitea UI erstellt werden unter: Profil -> Einstellungen -> Anwendugnen -> Neuen Token erzeugen
-    # Das Token muss Lese- und Schreibrechte für Packages haben.
-    npm config set //<registry-url>:_authToken="<auth-token>"
-    ```
+# 6. Library veröffentlichen
 
-**Publish der Library**
+## Voraussetzungen (nur einmal einrichten)
 
-1. Führe den Befehl `npm version` aus um die Version zu setzen
-    ```bash
-    npm version x.x.x --prefix projects/<lib-name> # z.b. 1.0.0
-    ```
+### 1. Registry-URL setzen
+Nur nötig, wenn sie noch nicht in der `package.json` steht:
+```bash
+npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
+```
 
-2. Baue die Library, welche gepublished werden soll: 
-    ```bash
-    ng build <lib-name> --configuration production
+### 2. Auth-Token setzen
+```bash
+npm config set //<registry-url>:_authToken="<auth-token>"
+```
 
-    # ODER falls ein entsprechendes npm skript gibt in Projekt-Root package.json
-    npm run build:[lib-name]
-    ```
+Hinweis:  
+Das Token ist ein **Person Access Token (PAT)** aus Gitea:  
+Profil → Einstellungen → Anwendungen → Neuen Token erzeugen  
+Es benötigt **Lese- und Schreibrechte für Packages**.
 
-3. Publishe die gebaute Library im `dist` Verzeichnis
-    ```bash
-    npm publish ./dist/<lib-name>
-    ```
+---
 
-## Additional Resources
+## Publish-Vorgang
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 1. Version setzen
+```bash
+npm version x.x.x --prefix projects/<lib-name>   # Beispiel: 1.0.0
+```
+
+### 2. Library bauen
+```bash
+ng build <lib-name> --configuration production
+# oder falls vorhanden:
+npm run build:<lib-name>
+```
+
+### 3. Veröffentlichen
+```bash
+npm publish ./dist/<lib-name>
+```
