@@ -3,7 +3,7 @@ import { MatIcon } from "@angular/material/icon";
 import { MatRadioModule } from "@angular/material/radio";
 
 @Component({
-  selector: "lib-yfile-upload",
+  selector: "lib-file-upload",
   standalone: true,
   imports: [MatIcon, MatRadioModule],
   templateUrl: "./file-upload.component.html",

@@ -8,35 +8,40 @@
 
 ```bash
 npm i # dev-dependencies installieren
-npm run storybook:[projekt] # startet storybook für ein Projekt z.b. shared-components. Storybook ist dann erreichbar unter `http://localhost:6006/`
+npm run storybook:[project] # startet storybook für ein Projekt z.b. shared-components. Storybook ist dann erreichbar unter `http://localhost:6006/`
 ```
 
 ## Hilfreiche Befehle
 
 ```bash
 ng generate component component-name # generiert eine neue Angular Component
-npm run build # bzw. baut alle Projekte
-npm run test # execute unit tests with karma
+npm run build # baut alle Projekte
+npm run test # Führt Unit Tests aus mit Karma (für alle Projekte)
+```
+
+## Eine Neue Component hinzufügen
+
+```bash
+ng generate component component-name # generiert eine neue Angular Component
 ```
 
 ## Eine neue Library erstellen
 
 ```bash
-ng generate library <library-name> # erstellt eine neue Library unter `projects`
-
-cd projects/lib-name
+ng generate library <lib-name> # erstellt eine neue Library unter `projects`
 
 # ersetze <npm-registry-url> und <lib-name>
 # Registry-URL: {scope}:registry=https://gitea.example.com/api/packages/{owner}/npm/
-npm pkg set publishConfig.registry=<npm-registry-url>
+npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 
 # Initialisiere die Library als NPM Package (zum publishen später)
 # vergebe hierbei einen sinnvollen Namen und scope z.b. @angular-packages/shared-components
-npm init
+npm init ./projects/<lib-name>
 ```
 
 ### Eine Library als NPM Package publishen
 
+**Vorraussetzungen** - einmaliges Setup
 1. NPM Registry-URL setzen
 - Muss nur einmalig ausgeführt werden
 - Muss nur ausgeführt werden, falls die NPM Registry-URL noch nicht gesetzt ist in der <project>/package.json
@@ -53,32 +58,24 @@ npm init
     npm config set //<registry-url>:_authToken="<auth-token>"
     ```
 
+**Publish der Library**
+
+1. Führe den Befehl `npm version` aus um die Version zu setzen
+    ```bash
+    npm version x.x.x --prefix projects/<lib-name> # z.b. 1.0.0
+    ```
+
 2. Baue die Library, welche gepublished werden soll: 
     ```bash
-    ng build <projekt> --configuration production
+    ng build <lib-name> --configuration production
 
     # ODER falls ein entsprechendes npm skript gibt in Projekt-Root package.json
-    npm run build:[project]
+    npm run build:[lib-name]
     ```
 
-3. Setze dein AUTH Token für das NPM Registry
+3. Publishe die gebaute Library im `dist` Verzeichnis
     ```bash
-    # 1. kopiere example.npmrc nach .npmrc
-    move example.npmrc .npmrc
-
-    # 2. Ersetze die in mit {} Klammern markierten Variablen
-
-    npm publish dist/<projekt>
-    ```
-
-3. Gehe in das `dist` Verzeichnis der Librar, die gepushed werden soll:
-    ```bash
-    cd dist/<projekt>
-    ```
-
-3. Führe den Befehl `npm publish` aus um das NPM Packge zu einem Registry zu pushen:
-    ```bash
-    npm publish
+    npm publish ./dist/<lib-name>
     ```
 
 ## Additional Resources
