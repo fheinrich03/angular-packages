@@ -4,9 +4,11 @@
   "scripts": {
     "build": "npm run build:all",
     "build:shared": "ng build shared-components --configuration production",
-    "build:all": "npm run build:shared",
+    "build:shared:storybook": "ng run shared-components:build-storybook",
+    "build:all": "npm run build:shared && npm run build:shared:storybook",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "storybook:shared": "ng run shared-components:storybook"
   },
   "private": true,
   "dependencies": {
@@ -41,7 +43,13 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^19.2.0",
     "typescript": "~5.7.2",
-    "typescript-eslint": "8.46.4"
+    "typescript-eslint": "8.46.4",
+    "storybook": "^10.1.4",
+    "@storybook/angular": "^10.1.4",
+    "@storybook/addon-a11y": "^10.1.4",
+    "@storybook/addon-docs": "^10.1.4",
+    "@storybook/addon-onboarding": "^10.1.4",
+    "eslint-plugin-storybook": "^10.1.4"
   },
   "description": "Packages für Angular Web Applikationen",
   "main": "eslint.config.js",
