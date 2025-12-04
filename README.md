@@ -1,6 +1,7 @@
 # Angular Packages – Privates NPM Registry
 
 ## Gliederung
+
 1. [Einleitung](#1-einleitung)
 2. [Lokale Entwicklung](#2-lokale-entwicklung)
 3. [Hilfreiche Befehle](#3-hilfreiche-befehle)
@@ -56,12 +57,14 @@ ng generate library <lib-name>   # erstellt die Library unter /projects
 ```
 
 ### Registry-URL setzen
+
 ```bash
 # <npm-registry-url> und <lib-name> ersetzen
 npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 ```
 
 ### Library als NPM Package initialisieren
+
 ```bash
 npm init ./projects/<lib-name>
 # Vergib dabei einen sinnvollen Namen z. B. @angular-packages/shared-components
@@ -74,12 +77,15 @@ npm init ./projects/<lib-name>
 ## Voraussetzungen (nur einmal einrichten)
 
 ### 1. Registry-URL setzen
+
 Nur nötig, wenn sie noch nicht in der `package.json` steht:
+
 ```bash
 npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 ```
 
 ### 2. Auth-Token setzen
+
 ```bash
 npm config set //<registry-url>:_authToken="<auth-token>"
 ```
@@ -94,11 +100,13 @@ Es benötigt **Lese- und Schreibrechte für Packages**.
 ## Publish-Vorgang
 
 ### 1. Version setzen
+
 ```bash
 npm version x.x.x --prefix projects/<lib-name>   # Beispiel: 1.0.0
 ```
 
 ### 2. Library bauen
+
 ```bash
 ng build <lib-name> --configuration production
 # oder falls vorhanden:
@@ -106,6 +114,7 @@ npm run build:<lib-name>
 ```
 
 ### 3. Veröffentlichen
+
 ```bash
 npm publish ./dist/<lib-name>
 ```

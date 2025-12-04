@@ -1,6 +1,7 @@
 # Angular Packages – Privates NPM Registry
 
 ## Gliederung
+
 1. [Einleitung](#1-einleitung)
 2. [Lokale Entwicklung](#2-lokale-entwicklung)
 3. [Hilfreiche Befehle](#3-hilfreiche-befehle)
@@ -42,13 +43,13 @@ npm run test    # Führt Unit-Tests mit Karma aus (für alle Projekte)
 # 4. Neue Komponente hinzufügen
 
 - Komponenten können jetzt aus bestehenden Projekten ausgelagert werden
-- Oder es können neue Komponenten erstellt werden mit 
-	- `ng generate component <component-name> --project=<lib-name>`
+- Oder es können neue Komponenten erstellt werden mit
+  - `ng generate component <component-name> --project=<lib-name>`
 - Hinweise:
-	- Die Komponenten sollten je nach Art in verschiedene Packages aufgeteilt werden
-		- z.b. `shared-components`, `ui`, `utils`, usw.
-		- Ein Packge entspricht dabei einer Library
-	- ggf. also vorher eine neue library erstellen (Siehe "Eine Library erstellen")
+  - Die Komponenten sollten je nach Art in verschiedene Packages aufgeteilt werden
+    - z.b. `shared-components`, `ui`, `utils`, usw.
+    - Ein Packge entspricht dabei einer Library
+  - ggf. also vorher eine neue library erstellen (Siehe "Eine Library erstellen")
 - `ng generate library <library-name>`
 
 ### Peer Dependencies setzen
@@ -56,11 +57,12 @@ npm run test    # Führt Unit-Tests mit Karma aus (für alle Projekte)
 - ggf. benötigen die Komponenten Dependencies
 - Dann müssen sie in der Library als `peerDependencies` markiert werden
 - z.B. `@angular/material` (wird für UI-Components verwendet)
-- `peerDependencies` setzen in 
-	- **für Installieren der Library später**: `projects/<library-name>/package.json` als `peerDependency`
-	- **für lokales Entwickeln der Library**: UND unter `<repo-root>/package.json` als `devDependency`
+- `peerDependencies` setzen in
+  - **für Installieren der Library später**: `projects/<library-name>/package.json` als `peerDependency`
+  - **für lokales Entwickeln der Library**: UND unter `<repo-root>/package.json` als `devDependency`
 
 **Storybook**
+
 - Damit die Komponente in **Storybook** sichtbar wird, muss zusätzlich eine `.stories.ts` Datei im `stories`-Ordner erstellt werden.
 
 ---
@@ -72,11 +74,13 @@ ng generate library <lib-name>   # erstellt die Library unter /projects
 ```
 
 ### Registry-URL setzen
+
 ```bash
 npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 ```
 
 ### Library als NPM Package initialisieren
+
 ```bash
 npm init ./projects/<lib-name>
 # Vergib einen sinnvollen Namen, z. B. @angular-packages/shared-components
@@ -89,11 +93,13 @@ npm init ./projects/<lib-name>
 ## Voraussetzungen (nur einmal einrichten)
 
 ### 1. Registry-URL setzen
+
 ```bash
 npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 ```
 
 ### 2. Auth-Token setzen
+
 ```bash
 npm config set //<registry-url>:_authToken="<auth-token>"
 ```
@@ -108,16 +114,19 @@ Es benötigt **Lese- und Schreibrechte für Packages**.
 ## Publish-Vorgang
 
 ### 1. Version setzen
+
 ```bash
 npm version x.x.x --prefix projects/<lib-name>
 ```
 
 ### 2. Library bauen
+
 ```bash
 ng build <lib-name> --configuration production
 ```
 
 ### 3. Veröffentlichen
+
 ```bash
 npm publish ./dist/<lib-name>
 ```
@@ -129,10 +138,11 @@ npm publish ./dist/<lib-name>
 Erstellen von Angular Libraries: [Dokumentation](https://angular.dev/tools/libraries/creating-libraries#peer-dependencies)
 
 ### Hinweise (Struktur & Benennung):
+
 - in dem Workspace können später mehrere libraries hinzugefügt werden
 - eine Sinnvolle Benennung wäre z.b.
 - Workspace: `angular packages`
-- Library:  `shared-components`, `ui`, `utils`, usw.
+- Library: `shared-components`, `ui`, `utils`, usw.
 
 ## Workspace und Repository erstellen
 
@@ -143,6 +153,7 @@ git remote add origin git@localhost:test-org/my-lib.git
 ```
 
 ## Library erstellen
+
 ```bash
 ng generate library <lib-name>
 npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
@@ -150,6 +161,7 @@ npm init ./projects/<lib-name>
 ```
 
 ### Verzeichnisstruktur
+
 ```txt
 <workspace>
 |-- README.md
@@ -169,22 +181,26 @@ npm init ./projects/<lib-name>
 ```
 
 ## Komponenten zur Library hinzufügen
+
 ```bash
 ng generate component <component-name> --project=<lib-name>
 ```
 
 ## Peer Dependencies setzen
+
 - In `projects/<lib-name>/package.json` → `peerDependencies`
 - In Root `package.json` → `devDependencies`
 
 ---
 
 ## Storybook Setup (optional)
+
 ```bash
 npx sb init
 ```
 
 Das folgende Projekt in `angular.json` hinzufügen (siehe: [Dokumentation](https://dev.to/saulodias/angular-library-storybook-44ma))
+
 ```json
 "storybook": {
       "projectType": "application",
@@ -202,7 +218,6 @@ Das folgende Projekt in `angular.json` hinzufügen (siehe: [Dokumentation](https
     }
   }
 ```
- 
 
 ---
 
@@ -213,11 +228,13 @@ Das folgende Projekt in `angular.json` hinzufügen (siehe: [Dokumentation](https
 - Dieser Ablauf funktioniert für die lokale Entwicklung und CI/CD
 
 ### Registry setzen
+
 ```bash
 npm config set @scope:registry https://gitea.example.com/api/packages/{owner}/npm/
 ```
 
 ### Auth-Token setzen
+
 ```bash
 npm config set //<registry-url>:_authToken="<auth-token>"
 ```

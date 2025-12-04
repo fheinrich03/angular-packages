@@ -43,50 +43,6 @@
             ],
             "eslintConfig": "projects/shared-components/eslint.config.js"
           }
-        },
-        "storybook": {
-          "builder": "@storybook/angular:start-storybook",
-          "options": {
-            "configDir": "projects/shared-components/.storybook",
-            "browserTarget": "shared-components:build",
-            "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "projects/shared-components"
-            ],
-            "port": 6006
-          }
-        },
-        "build-storybook": {
-          "builder": "@storybook/angular:build-storybook",
-          "options": {
-            "configDir": "projects/shared-components/.storybook",
-            "browserTarget": "shared-components:build",
-            "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "projects/shared-components"
-            ],
-            "outputDir": "storybook-static"
-          }
-        }
-      }
-    },
-    "storybook": {
-      "projectType": "application",
-      "root": "stories",
-      "sourceRoot": "stories",
-      "architect": {
-        "build": {
-          "options": {
-            "tsConfig": "tsconfig.json",
-            "styles": [],
-            "scripts": []
-          }
         }
       }
     }
