@@ -8,7 +8,7 @@
     "build:all": "npm run build:shared && npm run build:shared:storybook",
     "test": "ng test",
     "lint": "ng lint",
-    "storybook:shared": "ng run shared-components:storybook"
+    "shared:storybook": "ng run shared-components:storybook"
   },
   "private": true,
   "dependencies": {
