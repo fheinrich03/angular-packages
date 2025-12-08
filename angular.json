@@ -48,7 +48,10 @@
             "browserTarget": "shared-components:build",
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "projects/shared-components"],
-            "port": 6006
+            "port": 6006,
+            "styles": [
+              "projects/shared-components/src/styles.css"
+            ]
           }
         },
         "build-storybook": {
@@ -59,20 +62,6 @@
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "projects/shared-components"],
             "outputDir": "storybook-static"
-          }
-        }
-      }
-    },
-    "storybook": {
-      "projectType": "application",
-      "root": "stories",
-      "sourceRoot": "stories",
-      "architect": {
-        "build": {
-          "options": {
-            "tsConfig": "tsconfig.json",
-            "styles": [],
-            "scripts": []
           }
         }
       }

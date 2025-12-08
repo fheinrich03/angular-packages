@@ -195,29 +195,89 @@ ng generate component <component-name> --project=<lib-name>
 
 ## Storybook Setup (optional)
 
+Tutorials:
+- [Angular libraries & Storybook](https://rubenr.dev/angular-libraries-storybook/)
+- [Angular Library + Storybook](https://dev.to/saulodias/angular-library-storybook-44ma)
+
+Im Workspace Root Verzeichnis ausführen:
 ```bash
 npx sb init
 ```
+- Das initialisiert Storybook im Projekt root
+- ggf. muss noch etwas in `anuglar.json` konfiguriert werden
 
-Das folgende Projekt in `angular.json` hinzufügen (siehe: [Dokumentation](https://dev.to/saulodias/angular-library-storybook-44ma))
+---
 
+## Tailwind CSS v3 Einrichten für Storybook 
+
+### Tailwind v3 im Workspace initialisieren (global)
+
+Im Workspace Root ausführen:
+```bash
+npm install -D tailwindcss@3
+npx tailwindcss init
+```
+
+tailwind.config.js in Workspace Root
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./projects/**/*.{html,ts}",
+    "./stories/**/*.{html,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+Im `anuglar.json` das gerade erstellte `styles.css` angeben
+- Wichtig `<lib-name>` ersetzen 
 ```json
-"storybook": {
-      "projectType": "application",
-      "root": "stories",
-      "sourceRoot": "stories",
-      "architect": {
-        "build": {
+"projects":{
+  "<lib-name>":{
+    "architect": {
+      ...
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
           "options": {
-            "tsConfig": "tsconfig.json",
-            "styles": [],
-            "scripts": []
+            "configDir": "projects/<lib-name>/.storybook",
+            "browserTarget": "<lib-name>:build",
+            "compodoc": true,
+            "compodocArgs": ["-e", "json", "-d", "projects/<lib-name>"],
+            "port": 6006,
+            "styles": [ // NEU - hier das stylesheet angeben (mit den tailwind imports)
+              "projects/<lib-name>/src/styles.css"
+            ]
           }
-        }
-      }
+        },
     }
   }
+}
 ```
+
+### Tailwind für das Storybook aktivieren (pro Library)
+
+`projects/<library-name>/src/styles.css` erstellen:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Tutorials:
+- [Angular libraries & Storybook](https://rubenr.dev/angular-libraries-storybook/)
+- [Angular Library + Storybook](https://dev.to/saulodias/angular-library-storybook-44ma)
+
+Im Workspace Root Verzeichnis ausführen:
+```bash
+npx sb init
+```
+- Das initialisiert Storybook im Projekt root
+- vielleicht muss noch etwas in `anuglar.json` konfiguriert werden
+
 
 ---
 
