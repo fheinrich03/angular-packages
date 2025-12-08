@@ -295,6 +295,15 @@ Im `anuglar.json` das gerade erstellte `styles.css` angeben
 }
 ```
 
+Im `projects/<lib-name>/package.json` das peerDependency `tailwindcss` angeben
+- Wichtig `<lib-name>` ersetzen 
+```json
+  "peerDependencies": {
+    ...
+    "tailwindcss": "^3.4.18"
+  },
+```
+
 ### Tailwind für das Storybook aktivieren (pro Library)
 
 `projects/<library-name>/src/styles.css` erstellen:
