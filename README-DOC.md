@@ -9,6 +9,7 @@
 5. [Neue Library erstellen](#5-neue-library-erstellen)
 6. [Library veröffentlichen](#6-library-veröffentlichen)
 7. [Dokumentation: Template selbst erstellen & nutzen](#7-dokumentation-template-selbst-erstellen--nutzen)
+7. [Zusätzliches](#7-Zusatzliches)
 
 ---
 
@@ -73,12 +74,6 @@ npm run test    # Führt Unit-Tests mit Karma aus (für alle Projekte)
 ng generate library <lib-name>   # erstellt die Library unter /projects
 ```
 
-### Registry-URL setzen
-
-```bash
-npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
-```
-
 ### Library als NPM Package initialisieren
 
 ```bash
@@ -88,14 +83,23 @@ npm init ./projects/<lib-name>
 
 ---
 
-# 6. Library veröffentlichen
+# 6. Privates Registry Setup
 
-## Voraussetzungen (nur einmal einrichten)
+- Hiermit werden die URL zu dem privatem Registry und das Auth Token gesetzt
+- Dieses Setup muss nur einmal ausgeführt werden pro Computer
 
 ### 1. Registry-URL setzen
 
+Eine Registry Url kann ein Bestimmten Scope gesetzt werden.
+- Beispiel Package mit Scope: `@my-scope/my-library`
+
 ```bash
-npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
+# Mit Scope: wird verwendet für Libraries mit diesem scope
+# example: @myscope:registry=https://mycustomregistry.example.org
+npm config set <scope>:registry <registry-url>
+
+# oder default registry url (wird verwendet für alle libraries ohne scope)
+npm config set registry <registry-url>
 ```
 
 ### 2. Auth-Token setzen
@@ -108,6 +112,13 @@ Hinweis:
 Das Token ist ein **Person Access Token (PAT)** aus Gitea:  
 Profil → Einstellungen → Anwendungen → Neuen Token erzeugen  
 Es benötigt **Lese- und Schreibrechte für Packages**.
+
+---
+
+# 7. Library veröffentlichen
+
+## Voraussetzungen
+- gesetzte Registry-URL und Auth Token für das Registry siehe [6. Privates Registry Setup](#6.-Privates-Registry-Setup)
 
 ---
 
@@ -133,7 +144,7 @@ npm publish ./dist/<lib-name>
 
 ---
 
-# 7. Dokumentation: Template selbst erstellen & nutzen
+# 8. Dokumentation: Template selbst erstellen & nutzen
 
 Erstellen von Angular Libraries: [Dokumentation](https://angular.dev/tools/libraries/creating-libraries#peer-dependencies)
 
@@ -156,7 +167,6 @@ git remote add origin git@localhost:test-org/my-lib.git
 
 ```bash
 ng generate library <lib-name>
-npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 npm init ./projects/<lib-name>
 ```
 
@@ -207,6 +217,33 @@ npx sb init
 - ggf. muss noch etwas in `anuglar.json` konfiguriert werden
 
 ---
+
+## Registry & Auth für lokale Entwicklung und CI/CD
+
+- Um die Pakete aufzulösen muss die Registry-URL und ein Auth Token angegeben werden um sich bei dem Registry (Gitea) zu authentifizieren
+- Beide der folgenden Commands müssen nur einmal für die Umgebung ausgeführt werden
+- Dieser Ablauf funktioniert für die lokale Entwicklung und CI/CD
+
+### Registry setzen
+
+```bash
+npm config set @scope:registry https://gitea.example.com/api/packages/{owner}/npm/
+```
+
+### Auth-Token setzen
+
+```bash
+npm config set //<registry-url>:_authToken="<auth-token>"
+```
+
+Hinweis:  
+Das Token ist ein **Person Access Token (PAT)** aus Gitea:  
+Profil → Einstellungen → Anwendungen → Neuen Token erzeugen  
+Es benötigt **Lese- und Schreibrechte für Packages**.
+
+---
+
+# Zusätzliches
 
 ## Tailwind CSS v3 Einrichten für Storybook 
 
@@ -278,30 +315,5 @@ npx sb init
 - Das initialisiert Storybook im Projekt root
 - vielleicht muss noch etwas in `anuglar.json` konfiguriert werden
 
-
----
-
-## Registry & Auth für lokale Entwicklung und CI/CD
-
-- Um die Pakete aufzulösen muss die Registry-URL und ein Auth Token angegeben werden um sich bei dem Registry (Gitea) zu authentifizieren
-- Beide der folgenden Commands müssen nur einmal für die Umgebung ausgeführt werden
-- Dieser Ablauf funktioniert für die lokale Entwicklung und CI/CD
-
-### Registry setzen
-
-```bash
-npm config set @scope:registry https://gitea.example.com/api/packages/{owner}/npm/
-```
-
-### Auth-Token setzen
-
-```bash
-npm config set //<registry-url>:_authToken="<auth-token>"
-```
-
-Hinweis:  
-Das Token ist ein **Person Access Token (PAT)** aus Gitea:  
-Profil → Einstellungen → Anwendungen → Neuen Token erzeugen  
-Es benötigt **Lese- und Schreibrechte für Packages**.
 
 ---

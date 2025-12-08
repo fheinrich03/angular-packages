@@ -53,14 +53,8 @@ Damit die Komponente in **Storybook** sichtbar wird, muss zusätzlich eine `.sto
 # 5. Neue Library erstellen
 
 ```bash
+# mit Scope (empfohlen): ng generate library @scope/library-name
 ng generate library <lib-name>   # erstellt die Library unter /projects
-```
-
-### Registry-URL setzen
-
-```bash
-# <npm-registry-url> und <lib-name> ersetzen
-npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
 ```
 
 ### Library als NPM Package initialisieren
@@ -72,16 +66,23 @@ npm init ./projects/<lib-name>
 
 ---
 
-# 6. Library veröffentlichen
+# 6. Privates Registry Setup
 
-## Voraussetzungen (nur einmal einrichten)
+- Hiermit werden die URL zu dem privatem Registry und das Auth Token gesetzt
+- Dieses Setup muss nur einmal ausgeführt werden pro Computer
 
 ### 1. Registry-URL setzen
 
-Nur nötig, wenn sie noch nicht in der `package.json` steht:
+Eine Registry Url kann ein Bestimmten Scope gesetzt werden.
+- Beispiel Package mit Scope: `@my-scope/my-library`
 
 ```bash
-npm pkg set publishConfig.registry=<npm-registry-url> --prefix projects/<lib-name>
+# Mit Scope: wird verwendet für Libraries mit diesem scope
+# example: @myscope:registry=https://mycustomregistry.example.org
+npm config set <scope>:registry <registry-url>
+
+# oder default registry url (wird verwendet für alle libraries ohne scope)
+npm config set registry <registry-url>
 ```
 
 ### 2. Auth-Token setzen
@@ -96,6 +97,11 @@ Profil → Einstellungen → Anwendungen → Neuen Token erzeugen
 Es benötigt **Lese- und Schreibrechte für Packages**.
 
 ---
+
+# 7. Library veröffentlichen
+
+## Voraussetzungen
+- gesetzte Registry-URL und Auth Token für das Registry siehe [6. Privates Registry Setup](#6.-Privates-Registry-Setup)
 
 ## Publish-Vorgang
 
