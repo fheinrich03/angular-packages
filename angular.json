@@ -50,7 +50,7 @@
             "compodocArgs": ["-e", "json", "-d", "projects/shared-components"],
             "port": 6006,
             "styles": [
-              "projects/shared-components/src/styles.css"
+              "projects/shared-components/src/styles.scss"
             ]
           }
         },
