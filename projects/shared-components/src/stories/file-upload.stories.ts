@@ -3,7 +3,7 @@ import type { StoryObj } from '@storybook/angular';
 import { FileUploadComponent } from '../lib/file-upload/file-upload.component';
 
 const meta = {
-  title: 'Components/FileUploadComponent',
+  title: 'Components/lib-file-upload',
   component: FileUploadComponent,
   tags: ['autodocs'],
 };

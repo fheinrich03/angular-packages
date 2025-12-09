@@ -6,3 +6,4 @@
 // export * from './lib/example-component/example.component';
 
 export * from './lib/file-upload/file-upload.component';
+export * from './lib/example-component/example.component'
