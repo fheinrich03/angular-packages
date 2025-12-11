@@ -4,7 +4,7 @@
 @include mat.elevation-classes();
 @include mat.app-background();
 
-$app-primary: mat.$blue-palette;
+$app-primary: mat.$cyan-palette;
 $app-tertiary: mat.$orange-palette;
 
 $custom-app-theme: mat.define-theme(

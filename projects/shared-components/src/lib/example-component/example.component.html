@@ -1,13 +1,17 @@
 <div>
   <p>example works!</p>
   <p>display an argument: {{ argument }}</p>
-  <div class="flex align-center items-center content-center">
-    <button mat-button>Basic</button>
-    <button mat-flat-button class="primary-button">Primary</button>
-    <button mat-stroked-button class="tertiary-button">Tertiary</button>
-    <button mat-fab aria-label="Example icon button with a delete icon">
-      <mat-icon>delete</mat-icon>
-    </button>
+  <div class="grid grid-col-2">
+    <div>
+      <button mat-button>Basic</button>
+      <button mat-flat-button class="primary-button">Primary</button>
+    </div>
+    <div>
+      <button mat-stroked-button class="tertiary-button mx-4">Tertiary</button>
+      <button mat-fab aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
     <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
       <mat-icon>more_vert</mat-icon>
     </button>
