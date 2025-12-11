@@ -17,7 +17,12 @@ Dieses Projekt wurde mit der [Angular CLI](https://github.com/angular/angular-cl
 Es dient als Template für **Angular Component Libraries**, die in ein **privates NPM-Registry** hochgeladen werden können.
 
 Eine Beispiel-Library ist bereits enthalten:  
-`projects/shared-components`
+**shared-components** - `projects/shared-components`
+- Angular v19
+- Angular Material v19
+- Material Symbols (for Icons)
+- Tailwind CSS v3.4
+- Storybook vor Component Preview and Docs
 
 ---
 
