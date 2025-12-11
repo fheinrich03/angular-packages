@@ -1,35 +1,9 @@
 @use "@angular/material" as mat;
 
-@include mat.core();
-@include mat.elevation-classes();
-@include mat.app-background();
-
-$app-primary: mat.$cyan-palette;
-$app-tertiary: mat.$orange-palette;
-
-$custom-app-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: $app-primary,
-      tertiary: $app-tertiary,
-      use-system-variables: true,
-      system-variables-prefix: sys,
-    ),
-    typography: (
-      use-system-variables: true,
-      system-variables-prefix: sys,
-    ),
-    density: (
-      scale: 0,
-    ),
-  )
-);
-
-:root {
-  @include mat.all-component-themes($custom-app-theme);
-  @include mat.system-level-colors($custom-app-theme); 
-  @include mat.system-level-typography($custom-app-theme); 
+html {
+  @include mat.theme(
+    (
+      color: mat.$blue-palette,
+    )
+  );
 }
-
-@include mat.typography-hierarchy($custom-app-theme);
