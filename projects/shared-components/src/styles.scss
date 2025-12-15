@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@use "material-symbols";
 
 /* Import for custom material theme */
 @use "./theme" as *;
+
+@import "material-symbols";
 
 /* import tailwind */
 @tailwind base;

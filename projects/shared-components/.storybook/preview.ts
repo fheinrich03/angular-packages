@@ -4,6 +4,7 @@ import docJson from "../documentation.json";
 import { MatIconRegistry } from "@angular/material/icon";
 import { provideHttpClient } from "@angular/common/http";
 import { inject, provideAppInitializer } from "@angular/core";
+
 setCompodocJson(docJson);
 
 const preview: Preview = {

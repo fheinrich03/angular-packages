@@ -1,13 +1,14 @@
 {
   "name": "@angular-packages/shared-components",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "peerDependencies": {
     "@angular/cdk": "^19.2.17",
     "@angular/common": "^19.2.17",
     "@angular/core": "^19.2.17",
     "@angular/forms": "^19.2.17",
     "@angular/material": "^19.2.17",
-    "tailwindcss": "^3.4.18"
+    "tailwindcss": "^3.4.18",
+    "material-symbols": "^0.40.2"
   },
   "dependencies": {
     "tslib": "^2.3.0"
